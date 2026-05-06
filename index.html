@@ -3,31 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Pipeline</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Project Pipeline · MoradaUno</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0e0e0f;
-    --surface: #161618;
-    --surface2: #1e1e21;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #f0efe8;
-    --muted: #7a7a82;
-    --accent: #c8f060;
-    --accent-dim: rgba(200,240,96,0.12);
-    --blue: #5b9cf6;
-    --blue-dim: rgba(91,156,246,0.12);
-    --amber: #f0b429;
-    --amber-dim: rgba(240,180,41,0.12);
-    --red: #f06060;
-    --red-dim: rgba(240,96,96,0.12);
-    --purple: #a78bfa;
-    --purple-dim: rgba(167,139,250,0.12);
-    --teal: #34d399;
-    --teal-dim: rgba(52,211,153,0.12);
-    --radius: 10px;
-    --radius-sm: 6px;
+    --purple-dark:  #671E75;
+    --purple-mid:   #772583;
+    --lila:         #B14EB5;
+    --lavender:     #E2ACD7;
+    --light-gray:   #E6E7E8;
+    --mid-gray:     #BCBEC0;
+    --dark-gray:    #6B6B78;
+    --near-black:   #12051A;
+    --teal:         #00C7B1;
+    --blue:         #06038D;
+    --peach:        #FFBE97;
+    --sky:          #74D1EA;
+    --white:        #ffffff;
+
+    --bg:           #F4F3F6;
+    --surface:      #ffffff;
+    --surface2:     #F9F8FA;
+    --border:       rgba(103,30,117,0.10);
+    --border2:      rgba(103,30,117,0.18);
+    --text:         #12051A;
+    --muted:        #6B6B78;
+
+    --radius:       12px;
+    --radius-sm:    8px;
+    --radius-xs:    5px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,26 +39,23 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 14px;
     min-height: 100vh;
     line-height: 1.5;
   }
 
-  /* subtle grid bg */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+  /* top accent bar */
+  .top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #671E75, #B14EB5, #FFBE97);
   }
 
-  .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .page {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
 
   /* ── Header ── */
   .header {
@@ -68,56 +69,56 @@
 
   .header-left { display: flex; align-items: center; gap: 14px; }
 
-  .logo {
-    width: 36px; height: 36px;
-    background: var(--accent);
-    border-radius: 8px;
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, #671E75, #B14EB5);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
 
-  .logo svg { width: 18px; height: 18px; }
+  .logo-mark svg { width: 22px; height: 22px; }
 
   .header-text h1 {
-    font-size: 17px;
-    font-weight: 500;
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--purple-dark);
     letter-spacing: -0.02em;
-    color: var(--text);
+    line-height: 1.2;
   }
 
   .header-text p {
     font-size: 12px;
     color: var(--muted);
-    margin-top: 1px;
-    font-family: 'DM Mono', monospace;
+    margin-top: 3px;
   }
 
-  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
   .btn {
-    font-size: 12px;
-    font-family: 'DM Sans', sans-serif;
-    padding: 7px 14px;
+    font-size: 13px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    padding: 8px 16px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--border2);
+    border: 1.5px solid var(--border2);
     background: var(--surface);
-    color: var(--muted);
+    color: var(--purple-mid);
     cursor: pointer;
     transition: all 0.15s;
     white-space: nowrap;
   }
-  .btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+  .btn:hover { background: #F3EBF5; border-color: var(--lila); }
 
-  .btn-accent {
-    background: var(--accent);
-    color: #0e0e0f;
+  .btn-primary {
+    background: linear-gradient(135deg, #671E75, #772583);
+    color: var(--white);
     border-color: transparent;
-    font-weight: 500;
-    color: #111;
   }
-  .btn-accent:hover { opacity: 0.88; color: #111; }
+  .btn-primary:hover { opacity: 0.88; background: linear-gradient(135deg, #671E75, #772583); }
 
-  /* ── Stats row ── */
+  /* ── Stats ── */
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -127,18 +128,17 @@
 
   .stat {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 1rem 1.1rem;
+    padding: 1.1rem 1.25rem;
   }
 
   .stat-val {
-    font-size: 26px;
-    font-weight: 500;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: -0.03em;
+    font-size: 28px;
+    font-weight: 600;
     line-height: 1;
     margin-bottom: 5px;
+    font-family: 'Figtree', sans-serif;
   }
 
   .stat-lbl {
@@ -146,9 +146,10 @@
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.07em;
+    font-weight: 500;
   }
 
-  /* ── View toggle ── */
+  /* ── View bar ── */
   .view-bar {
     display: flex;
     align-items: center;
@@ -158,49 +159,62 @@
     gap: 10px;
   }
 
-  .view-tabs { display: flex; gap: 2px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 3px; }
+  .view-tabs {
+    display: flex;
+    gap: 2px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+  }
 
   .view-tab {
     font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 4px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 5px;
     cursor: pointer;
     color: var(--muted);
     border: none;
     background: transparent;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     transition: all 0.15s;
   }
-  .view-tab.active { background: var(--surface2); color: var(--text); }
+  .view-tab.active { background: var(--purple-dark); color: var(--white); }
 
   .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
 
   .filter-chip {
     font-size: 11px;
-    padding: 4px 10px;
+    font-weight: 500;
+    padding: 5px 12px;
     border-radius: 20px;
-    border: 1px solid var(--border);
-    background: transparent;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
     color: var(--muted);
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     transition: all 0.15s;
   }
-  .filter-chip.active, .filter-chip:hover { border-color: var(--border2); color: var(--text); background: var(--surface2); }
+  .filter-chip.active, .filter-chip:hover {
+    border-color: var(--lila);
+    color: var(--purple-dark);
+    background: #F3EBF5;
+  }
 
   /* ── Kanban ── */
   #kanban-view {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
+    gap: 12px;
   }
 
   .col {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 0.85rem;
-    min-height: 200px;
+    padding: 0.9rem;
+    min-height: 220px;
   }
 
   .col-head {
@@ -209,141 +223,133 @@
     justify-content: space-between;
     margin-bottom: 12px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1.5px solid var(--border);
   }
 
   .col-name {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--muted);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
   }
 
-  .col-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .dot-backlog { background: var(--muted); }
-  .dot-active { background: var(--blue); }
-  .dot-review { background: var(--amber); }
-  .dot-done { background: var(--teal); }
+  .col-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-backlog { background: var(--mid-gray); }
+  .dot-active  { background: var(--purple-mid); }
+  .dot-review  { background: var(--peach); filter: saturate(1.4) brightness(0.85); }
+  .dot-done    { background: var(--teal); }
 
   .col-count {
     font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    font-weight: 600;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     border-radius: 20px;
-    padding: 1px 8px;
+    padding: 1px 9px;
     color: var(--muted);
   }
 
-  /* ── Project card ── */
+  /* ── Card ── */
   .card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
-    padding: 0.85rem;
+    padding: 0.9rem;
     margin-bottom: 8px;
     cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    animation: cardIn 0.2s ease;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    animation: fadeUp 0.18s ease;
   }
 
-  @keyframes cardIn {
-    from { opacity: 0; transform: translateY(6px); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(5px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .card:hover { border-color: var(--border2); background: #23232a; }
-  .card:last-child { margin-bottom: 0; }
+  .card:hover {
+    border-color: var(--lavender);
+    box-shadow: 0 2px 12px rgba(103,30,117,0.08);
+  }
 
-  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; margin-bottom: 6px; }
+  .card:last-child { margin-bottom: 0; }
 
   .card-title {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
+    font-weight: 600;
+    color: var(--near-black);
     line-height: 1.35;
-  }
-
-  .type-badge {
-    font-size: 10px;
-    font-family: 'DM Mono', monospace;
-    padding: 2px 7px;
-    border-radius: 4px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .tb-ai { background: var(--purple-dim); color: var(--purple); }
-  .tb-data { background: var(--blue-dim); color: var(--blue); }
-  .tb-ops { background: var(--teal-dim); color: var(--teal); }
-  .tb-cs { background: var(--amber-dim); color: var(--amber); }
-
-  .card-impact {
-    font-size: 12px;
-    color: var(--muted);
     margin-bottom: 7px;
-    line-height: 1.45;
   }
 
   .card-date {
     font-size: 11px;
-    font-family: 'DM Mono', monospace;
     color: var(--muted);
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    font-weight: 500;
   }
 
   .card-next {
-    font-size: 11px;
-    color: var(--blue);
+    font-size: 12px;
+    color: var(--purple-mid);
     display: flex;
     align-items: flex-start;
     gap: 5px;
     line-height: 1.4;
+    margin-bottom: 4px;
   }
+  .card-next::before { content: '→'; flex-shrink: 0; color: var(--lila); }
 
-  .card-next::before { content: '→'; flex-shrink: 0; }
-
-  .blocker-tag {
+  .needs-tag {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 10px;
-    background: var(--red-dim);
-    color: var(--red);
-    padding: 3px 8px;
-    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    background: #FFF4EE;
+    color: #B05A1A;
+    border: 1px solid #FFBE9760;
+    padding: 3px 9px;
+    border-radius: var(--radius-xs);
     margin-top: 6px;
-    font-family: 'DM Mono', monospace;
+    line-height: 1.3;
   }
 
-  .blocker-tag::before { content: '!'; font-weight: 700; }
+  .needs-tag::before { content: '↑'; font-weight: 700; }
+
+  .card-notes {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+  }
 
   /* ── List view ── */
   #list-view { display: none; }
 
-  .list-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--border);
+  .list-wrap {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
   }
+
+  .list-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
   .list-table th {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    color: var(--muted);
+    color: var(--white);
     padding: 10px 14px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background: var(--purple-dark);
     text-align: left;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .list-table td {
@@ -356,32 +362,33 @@
   }
 
   .list-table tr:last-child td { border-bottom: none; }
-  .list-table tr:hover td { background: var(--surface2); cursor: pointer; }
+  .list-table tr:hover td { background: #F9F3FA; cursor: pointer; }
 
   .status-pill {
     font-size: 10px;
-    font-family: 'DM Mono', monospace;
-    padding: 3px 8px;
-    border-radius: 4px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
     display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
-  .sp-backlog { background: rgba(122,122,130,0.15); color: var(--muted); }
-  .sp-active  { background: var(--blue-dim); color: var(--blue); }
-  .sp-review  { background: var(--amber-dim); color: var(--amber); }
-  .sp-done    { background: var(--teal-dim); color: var(--teal); }
+  .sp-backlog { background: #EDEDEE; color: var(--muted); }
+  .sp-active  { background: #F0E5F2; color: var(--purple-dark); }
+  .sp-review  { background: #FFF4EE; color: #B05A1A; }
+  .sp-done    { background: #E0FAF7; color: #00856E; }
 
   /* ── Summary panel ── */
   #summary-panel {
     display: none;
     margin-top: 1.5rem;
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius);
     padding: 1.25rem 1.5rem;
-    animation: cardIn 0.2s ease;
+    animation: fadeUp 0.2s ease;
   }
-
   #summary-panel.open { display: block; }
 
   .summary-header {
@@ -393,22 +400,22 @@
 
   .summary-header span {
     font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--muted);
-    font-weight: 500;
+    color: var(--purple-dark);
   }
 
   .summary-pre {
-    font-family: 'DM Mono', monospace;
-    font-size: 12.5px;
+    font-family: 'Figtree', monospace;
+    font-size: 13px;
     color: var(--text);
     line-height: 1.8;
     white-space: pre-wrap;
     background: var(--surface2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.25rem;
   }
 
   /* ── Modal ── */
@@ -416,38 +423,45 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: rgba(18,5,26,0.5);
     z-index: 100;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(3px);
   }
-
   .modal-overlay.open { display: flex; }
 
   .modal {
     background: var(--surface);
-    border: 1px solid var(--border2);
+    border: 1.5px solid var(--border2);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.75rem;
     width: 100%;
     max-width: 440px;
-    animation: cardIn 0.2s ease;
+    animation: fadeUp 0.2s ease;
   }
 
-  .modal h2 {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
-    color: var(--text);
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
   }
 
-  .field { margin-bottom: 12px; }
+  .modal-header h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--purple-dark);
+  }
+
+  .field { margin-bottom: 14px; }
 
   .field label {
     display: block;
     font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--muted);
@@ -457,127 +471,122 @@
   .field input, .field select, .field textarea {
     width: 100%;
     background: var(--surface2);
-    border: 1px solid var(--border2);
+    border: 1.5px solid var(--border2);
     border-radius: var(--radius-sm);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 13px;
-    padding: 8px 11px;
+    padding: 9px 12px;
     outline: none;
     transition: border-color 0.15s;
   }
 
   .field input:focus, .field select:focus, .field textarea:focus {
-    border-color: rgba(200,240,96,0.4);
+    border-color: var(--lila);
+    background: var(--white);
   }
 
-  .field textarea { resize: vertical; min-height: 60px; line-height: 1.5; }
-
-  .field select option { background: #1e1e21; }
-
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+  .field select option { background: var(--surface); }
 
   .modal-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
     gap: 8px;
   }
 
   .btn-danger {
     font-size: 12px;
-    padding: 7px 14px;
+    font-weight: 500;
+    padding: 8px 14px;
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(240,96,96,0.25);
+    border: 1.5px solid #FFBE9760;
     background: transparent;
-    color: var(--red);
+    color: #B05A1A;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     transition: all 0.15s;
   }
-  .btn-danger:hover { background: var(--red-dim); }
+  .btn-danger:hover { background: #FFF4EE; }
 
   .modal-footer-right { display: flex; gap: 8px; }
 
-  /* ── Responsive ── */
-  @media (max-width: 700px) {
-    #kanban-view { grid-template-columns: 1fr 1fr; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 480px) {
-    #kanban-view { grid-template-columns: 1fr; }
-  }
-
+  /* ── Misc ── */
   .empty-col {
     font-size: 12px;
-    color: var(--muted);
+    color: var(--mid-gray);
     text-align: center;
-    padding: 1.5rem 0;
-    font-family: 'DM Mono', monospace;
-    opacity: 0.5;
+    padding: 2rem 0;
+    font-style: italic;
   }
 
-  .accent-text { color: var(--accent); }
-
-  /* toast */
   .toast {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
-    background: var(--surface2);
-    border: 1px solid var(--border2);
+    background: var(--purple-dark);
     border-radius: var(--radius-sm);
-    padding: 10px 16px;
+    padding: 10px 18px;
     font-size: 13px;
-    color: var(--text);
+    font-weight: 500;
+    color: var(--white);
     z-index: 200;
     display: none;
-    animation: cardIn 0.2s ease;
-    font-family: 'DM Mono', monospace;
+    animation: fadeUp 0.2s ease;
   }
   .toast.show { display: block; }
+
+  @media (max-width: 700px) {
+    #kanban-view { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    #kanban-view { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
+
+<div class="top-bar"></div>
 
 <div class="page">
 
   <!-- Header -->
   <div class="header">
     <div class="header-left">
-      <div class="logo">
-        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="6" height="6" rx="1.5" fill="#0e0e0f"/>
-          <rect x="10" y="2" width="6" height="6" rx="1.5" fill="#0e0e0f" opacity="0.5"/>
-          <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#0e0e0f" opacity="0.5"/>
-          <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#0e0e0f" opacity="0.3"/>
+      <div class="logo-mark">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="8" height="8" rx="2" fill="white" opacity="0.9"/>
+          <rect x="12" y="2" width="8" height="8" rx="2" fill="white" opacity="0.5"/>
+          <rect x="2" y="12" width="8" height="8" rx="2" fill="white" opacity="0.5"/>
+          <rect x="12" y="12" width="8" height="8" rx="2" fill="white" opacity="0.25"/>
         </svg>
       </div>
       <div class="header-text">
         <h1>Project Pipeline</h1>
-        <p id="last-updated">— proptech · AI + data · ops</p>
+        <p id="last-updated">MoradaUno · Operaciones &amp; AI</p>
       </div>
     </div>
     <div class="header-actions">
       <button class="btn" onclick="toggleSummary()">Resumen para líder ↗</button>
-      <button class="btn btn-accent" onclick="openModal()">+ Proyecto</button>
+      <button class="btn btn-primary" onclick="openModal()">+ Proyecto</button>
     </div>
   </div>
 
   <!-- Stats -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-val accent-text" id="s-total">0</div>
+      <div class="stat-val" style="color:var(--purple-dark)" id="s-total">0</div>
       <div class="stat-lbl">Total</div>
     </div>
     <div class="stat">
-      <div class="stat-val" style="color:var(--blue)" id="s-active">0</div>
+      <div class="stat-val" style="color:var(--purple-mid)" id="s-active">0</div>
       <div class="stat-lbl">En progreso</div>
     </div>
     <div class="stat">
-      <div class="stat-val" style="color:var(--amber)" id="s-review">0</div>
+      <div class="stat-val" style="color:#B05A1A" id="s-review">0</div>
       <div class="stat-lbl">En revisión</div>
     </div>
     <div class="stat">
@@ -585,8 +594,8 @@
       <div class="stat-lbl">Completados</div>
     </div>
     <div class="stat">
-      <div class="stat-val" style="color:var(--red)" id="s-blocked">0</div>
-      <div class="stat-lbl">Bloqueados</div>
+      <div class="stat-val" style="color:#B05A1A" id="s-needs">0</div>
+      <div class="stat-lbl">Necesitan algo</div>
     </div>
   </div>
 
@@ -597,11 +606,11 @@
       <button class="view-tab" id="tab-list" onclick="setView('list')">Lista</button>
     </div>
     <div class="filter-row">
-      <button class="filter-chip active" data-filter="all" onclick="setFilter(this,'all')">Todos</button>
-      <button class="filter-chip" data-filter="ai" onclick="setFilter(this,'ai')">AI</button>
-      <button class="filter-chip" data-filter="data" onclick="setFilter(this,'data')">Datos</button>
-      <button class="filter-chip" data-filter="ops" onclick="setFilter(this,'ops')">Ops</button>
-      <button class="filter-chip" data-filter="cs" onclick="setFilter(this,'cs')">CS</button>
+      <button class="filter-chip active" onclick="setFilter(this,'all')">Todos</button>
+      <button class="filter-chip" onclick="setFilter(this,'backlog')">Backlog</button>
+      <button class="filter-chip" onclick="setFilter(this,'active')">Activos</button>
+      <button class="filter-chip" onclick="setFilter(this,'review')">En revisión</button>
+      <button class="filter-chip" onclick="setFilter(this,'done')">Completados</button>
     </div>
   </div>
 
@@ -639,28 +648,29 @@
 
   <!-- List -->
   <div id="list-view">
-    <table class="list-table">
-      <thead>
-        <tr>
-          <th style="width:28%">Proyecto</th>
-          <th style="width:10%">Tipo</th>
-          <th style="width:12%">Status</th>
-          <th style="width:14%">Fecha</th>
-          <th>Impacto</th>
-          <th style="width:12%">Bloqueador</th>
-        </tr>
-      </thead>
-      <tbody id="list-body"></tbody>
-    </table>
+    <div class="list-wrap">
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Proyecto</th>
+            <th style="width:13%">Status</th>
+            <th style="width:13%">Fecha</th>
+            <th style="width:25%">Próximo paso</th>
+            <th>¿Qué se necesita?</th>
+          </tr>
+        </thead>
+        <tbody id="list-body"></tbody>
+      </table>
+    </div>
   </div>
 
-  <!-- Summary panel -->
+  <!-- Summary -->
   <div id="summary-panel">
     <div class="summary-header">
       <span>Resumen ejecutivo — listo para copiar</span>
       <div style="display:flex;gap:8px">
         <button class="btn" onclick="copySum()">Copiar</button>
-        <button class="btn" onclick="document.getElementById('summary-panel').classList.remove('open')">×</button>
+        <button class="btn" onclick="document.getElementById('summary-panel').classList.remove('open')">Cerrar</button>
       </div>
     </div>
     <pre class="summary-pre" id="summary-text"></pre>
@@ -671,56 +681,53 @@
 <!-- Modal -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <h2 id="modal-title">Nuevo proyecto</h2>
+    <div class="modal-header">
+      <div class="logo-mark" style="width:32px;height:32px;border-radius:8px">
+        <svg viewBox="0 0 22 22" fill="none" style="width:16px;height:16px">
+          <rect x="2" y="2" width="8" height="8" rx="2" fill="white" opacity="0.9"/>
+          <rect x="12" y="2" width="8" height="8" rx="2" fill="white" opacity="0.5"/>
+          <rect x="2" y="12" width="8" height="8" rx="2" fill="white" opacity="0.5"/>
+          <rect x="12" y="12" width="8" height="8" rx="2" fill="white" opacity="0.25"/>
+        </svg>
+      </div>
+      <h2 id="modal-title">Nuevo proyecto</h2>
+    </div>
+
     <div class="field">
       <label>Nombre del proyecto</label>
       <input id="f-name" placeholder="Ej: Dashboard de salud de portafolio">
     </div>
-    <div class="grid2">
-      <div class="field">
-        <label>Tipo</label>
-        <select id="f-type">
-          <option value="ai">AI / Automatización</option>
-          <option value="data">Análisis de datos</option>
-          <option value="ops">Operaciones</option>
-          <option value="cs">Customer success</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Status</label>
-        <select id="f-status">
-          <option value="backlog">Backlog</option>
-          <option value="active">En progreso</option>
-          <option value="review">En revisión</option>
-          <option value="done">Completado</option>
-        </select>
-      </div>
+    <div class="field">
+      <label>Status</label>
+      <select id="f-status">
+        <option value="backlog">Backlog</option>
+        <option value="active">En progreso</option>
+        <option value="review">En revisión</option>
+        <option value="done">Completado</option>
+      </select>
     </div>
     <div class="field">
       <label>Fecha objetivo</label>
       <input id="f-date" placeholder="Ej: Sem 3 mayo · Q2 2025">
     </div>
     <div class="field">
-      <label>Impacto esperado</label>
-      <input id="f-impact" placeholder="Ej: Reduce tiempo de detección de riesgo un 40%">
-    </div>
-    <div class="field">
       <label>Próximo paso concreto</label>
       <input id="f-next" placeholder="Ej: Extraer datos de Zendesk esta semana">
     </div>
     <div class="field">
-      <label>Bloqueador (dejar vacío si no hay)</label>
-      <input id="f-blocker" placeholder="Ej: Necesito acceso a tabla SQL de contratos">
+      <label>¿Qué se necesita?</label>
+      <input id="f-needs" placeholder="Ej: Acceso a tabla SQL de contratos, validación del equipo...">
     </div>
     <div class="field">
-      <label>Notas internas (opcional)</label>
-      <textarea id="f-notes" placeholder="Contexto, links, referencias..."></textarea>
+      <label>Notas internas</label>
+      <textarea id="f-notes" placeholder="Contexto, links, referencias, ideas..."></textarea>
     </div>
+
     <div class="modal-footer">
       <button class="btn-danger" id="btn-delete" onclick="deleteProject()" style="display:none">Eliminar</button>
       <div class="modal-footer-right">
         <button class="btn" onclick="closeModal()">Cancelar</button>
-        <button class="btn btn-accent" onclick="saveProject()">Guardar</button>
+        <button class="btn btn-primary" onclick="saveProject()">Guardar</button>
       </div>
     </div>
   </div>
@@ -729,13 +736,13 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY = 'pipeline_v2';
+const STORAGE_KEY = 'moradauno_pipeline_v1';
 
 let projects = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || [
-  { id: 1, name: 'Dashboard de salud de portafolio', type: 'data', status: 'active', date: 'Sem 3 mayo', impact: 'Visibilidad centralizada tickets + CRM para detectar clientes en riesgo 2-3 sem antes', next: 'Escribir queries SQL cruzando Zendesk + CRM', blocker: '', notes: '' },
-  { id: 2, name: 'Agente AI de triage de tickets', type: 'ai', status: 'backlog', date: 'Junio', impact: 'Reducir clasificación manual de tickets un 60%, liberar tiempo del equipo', next: 'Definir categorías de tickets con el equipo de soporte', blocker: 'Necesito aprobación para integración con Zendesk API', notes: '' },
-  { id: 3, name: 'Análisis de churn propietarios', type: 'data', status: 'review', date: 'Fin mayo', impact: 'Identificar patrones de cancelación 3 semanas antes del vencimiento', next: 'Presentar hallazgos a líder en próximo 1:1', blocker: '', notes: '' },
-  { id: 4, name: 'Automatización de reporte semanal ops', type: 'ops', status: 'backlog', date: 'Q3', impact: 'Eliminar 2h semanales de reporte manual del equipo', next: 'Mapear estructura del reporte actual', blocker: '', notes: '' },
+  { id:1, name:'Dashboard de salud de portafolio', status:'active', date:'Sem 3 mayo', next:'Escribir queries SQL cruzando Zendesk + CRM', needs:'', notes:'Cruzar datos de tickets + actividad CRM para detectar riesgo temprano' },
+  { id:2, name:'Agente AI de triage de tickets', status:'backlog', date:'Junio', next:'Definir categorías de tickets con el equipo de soporte', needs:'Aprobación para integración con Zendesk API', notes:'' },
+  { id:3, name:'Análisis de churn propietarios', status:'review', date:'Fin mayo', next:'Presentar hallazgos a líder en próximo 1:1', needs:'', notes:'Patrones de cancelación identificados 3 sem antes del vencimiento' },
+  { id:4, name:'Automatización de reporte semanal ops', status:'backlog', date:'Q3', next:'Mapear estructura del reporte actual', needs:'', notes:'' },
 ];
 
 let nextId = Math.max(...projects.map(p => p.id), 0) + 1;
@@ -745,83 +752,73 @@ let currentView = 'kanban';
 
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(projects)); }
 
-function typeLabel(t) { return { ai: 'AI', data: 'data', ops: 'ops', cs: 'cs' }[t] || t; }
-function typeBadgeClass(t) { return 'type-badge tb-' + t; }
-
-function statusLabel(s) { return { backlog: 'Backlog', active: 'En progreso', review: 'En revisión', done: 'Completado' }[s] || s; }
-function statusPillClass(s) { return 'status-pill sp-' + s; }
+function statusLabel(s) {
+  return { backlog:'Backlog', active:'En progreso', review:'En revisión', done:'Completado' }[s] || s;
+}
 
 function filtered() {
   if (currentFilter === 'all') return projects;
-  return projects.filter(p => p.type === currentFilter);
+  return projects.filter(p => p.status === currentFilter);
 }
 
 function render() {
   const ps = filtered();
-  const cols = { backlog: [], active: [], review: [], done: [] };
+  const cols = { backlog:[], active:[], review:[], done:[] };
   ps.forEach(p => cols[p.status].push(p));
 
-  ['backlog', 'active', 'review', 'done'].forEach(s => {
+  ['backlog','active','review','done'].forEach(s => {
     const el = document.getElementById('col-' + s);
     el.innerHTML = '';
-    if (cols[s].length === 0) {
-      el.innerHTML = '<div class="empty-col">vacío</div>';
+    if (!cols[s].length) {
+      el.innerHTML = '<div class="empty-col">Sin proyectos aquí</div>';
     } else {
       cols[s].forEach(p => {
         const d = document.createElement('div');
         d.className = 'card';
         d.onclick = () => editProject(p.id);
-        d.innerHTML = `
-          <div class="card-top">
-            <div class="card-title">${p.name}</div>
-            <span class="${typeBadgeClass(p.type)}">${typeLabel(p.type)}</span>
-          </div>
-          ${p.impact ? `<div class="card-impact">${p.impact}</div>` : ''}
-          ${p.date ? `<div class="card-date">${p.date}</div>` : ''}
-          ${p.next ? `<div class="card-next">${p.next}</div>` : ''}
-          ${p.blocker ? `<div class="blocker-tag">${p.blocker}</div>` : ''}
-        `;
+        d.innerHTML =
+          `<div class="card-title">${p.name}</div>` +
+          (p.date ? `<div class="card-date">${p.date}</div>` : '') +
+          (p.next ? `<div class="card-next">${p.next}</div>` : '') +
+          (p.needs ? `<div class="needs-tag">${p.needs}</div>` : '') +
+          (p.notes ? `<div class="card-notes">${p.notes}</div>` : '');
         el.appendChild(d);
       });
     }
     document.getElementById('cnt-' + s).textContent = cols[s].length;
   });
 
-  // list view
   const tbody = document.getElementById('list-body');
   tbody.innerHTML = '';
   ps.forEach(p => {
     const tr = document.createElement('tr');
     tr.onclick = () => editProject(p.id);
-    tr.innerHTML = `
-      <td style="font-weight:500">${p.name}</td>
-      <td><span class="${typeBadgeClass(p.type)}">${typeLabel(p.type)}</span></td>
-      <td><span class="${statusPillClass(p.status)}">${statusLabel(p.status)}</span></td>
-      <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px">${p.date || '—'}</td>
-      <td style="color:var(--muted);font-size:12px">${p.impact || '—'}</td>
-      <td>${p.blocker ? `<span style="color:var(--red);font-size:11px;font-family:'DM Mono',monospace">${p.blocker}</span>` : '<span style="color:var(--muted)">—</span>'}</td>
-    `;
+    tr.innerHTML =
+      `<td style="font-weight:600">${p.name}</td>` +
+      `<td><span class="status-pill sp-${p.status}">${statusLabel(p.status)}</span></td>` +
+      `<td style="color:var(--muted);font-size:12px">${p.date || '—'}</td>` +
+      `<td style="color:var(--purple-mid);font-size:12px">${p.next || '—'}</td>` +
+      `<td style="font-size:12px">${p.needs ? `<span style="color:#B05A1A">${p.needs}</span>` : '<span style="color:var(--mid-gray)">—</span>'}</td>`;
     tbody.appendChild(tr);
   });
 
-  // stats (always all projects)
-  document.getElementById('s-total').textContent = projects.length;
-  document.getElementById('s-active').textContent = projects.filter(p => p.status === 'active').length;
-  document.getElementById('s-review').textContent = projects.filter(p => p.status === 'review').length;
-  document.getElementById('s-done').textContent = projects.filter(p => p.status === 'done').length;
-  document.getElementById('s-blocked').textContent = projects.filter(p => p.blocker).length;
+  document.getElementById('s-total').textContent  = projects.length;
+  document.getElementById('s-active').textContent  = projects.filter(p => p.status === 'active').length;
+  document.getElementById('s-review').textContent  = projects.filter(p => p.status === 'review').length;
+  document.getElementById('s-done').textContent    = projects.filter(p => p.status === 'done').length;
+  document.getElementById('s-needs').textContent   = projects.filter(p => p.needs).length;
 
   const now = new Date();
   document.getElementById('last-updated').textContent =
-    'Actualizado ' + now.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+    'Actualizado ' + now.toLocaleDateString('es-MX', { day:'numeric', month:'short', year:'numeric' });
 }
 
 function setView(v) {
   currentView = v;
   document.getElementById('kanban-view').style.display = v === 'kanban' ? 'grid' : 'none';
-  document.getElementById('list-view').style.display = v === 'list' ? 'block' : 'none';
+  document.getElementById('list-view').style.display   = v === 'list'   ? 'block' : 'none';
   document.getElementById('tab-kanban').classList.toggle('active', v === 'kanban');
-  document.getElementById('tab-list').classList.toggle('active', v === 'list');
+  document.getElementById('tab-list').classList.toggle('active',   v === 'list');
 }
 
 function setFilter(el, f) {
@@ -836,8 +833,7 @@ function openModal(reset = true) {
     editId = null;
     document.getElementById('modal-title').textContent = 'Nuevo proyecto';
     document.getElementById('btn-delete').style.display = 'none';
-    ['name', 'date', 'impact', 'next', 'blocker', 'notes'].forEach(f => document.getElementById('f-' + f).value = '');
-    document.getElementById('f-type').value = 'ai';
+    ['name','date','next','needs','notes'].forEach(f => document.getElementById('f-'+f).value = '');
     document.getElementById('f-status').value = 'backlog';
   }
   document.getElementById('modal-overlay').classList.add('open');
@@ -847,17 +843,15 @@ function closeModal() { document.getElementById('modal-overlay').classList.remov
 
 function saveProject() {
   const name = document.getElementById('f-name').value.trim();
-  if (!name) return;
+  if (!name) { document.getElementById('f-name').focus(); return; }
   const p = {
-    id: editId || nextId++,
+    id:    editId || nextId++,
     name,
-    type: document.getElementById('f-type').value,
     status: document.getElementById('f-status').value,
-    date: document.getElementById('f-date').value,
-    impact: document.getElementById('f-impact').value,
-    next: document.getElementById('f-next').value,
-    blocker: document.getElementById('f-blocker').value,
-    notes: document.getElementById('f-notes').value,
+    date:   document.getElementById('f-date').value,
+    next:   document.getElementById('f-next').value,
+    needs:  document.getElementById('f-needs').value,
+    notes:  document.getElementById('f-notes').value,
   };
   if (editId) {
     const i = projects.findIndex(x => x.id === editId);
@@ -865,10 +859,8 @@ function saveProject() {
   } else {
     projects.push(p);
   }
-  save();
-  closeModal();
-  render();
-  showToast(editId ? 'Proyecto actualizado' : 'Proyecto creado');
+  save(); closeModal(); render();
+  showToast(editId ? 'Proyecto actualizado ✓' : 'Proyecto creado ✓');
 }
 
 function editProject(id) {
@@ -876,23 +868,19 @@ function editProject(id) {
   editId = id;
   document.getElementById('modal-title').textContent = 'Editar proyecto';
   document.getElementById('btn-delete').style.display = 'block';
-  document.getElementById('f-name').value = p.name;
-  document.getElementById('f-type').value = p.type;
+  document.getElementById('f-name').value   = p.name;
   document.getElementById('f-status').value = p.status;
-  document.getElementById('f-date').value = p.date || '';
-  document.getElementById('f-impact').value = p.impact || '';
-  document.getElementById('f-next').value = p.next || '';
-  document.getElementById('f-blocker').value = p.blocker || '';
-  document.getElementById('f-notes').value = p.notes || '';
+  document.getElementById('f-date').value   = p.date  || '';
+  document.getElementById('f-next').value   = p.next  || '';
+  document.getElementById('f-needs').value  = p.needs || '';
+  document.getElementById('f-notes').value  = p.notes || '';
   openModal(false);
 }
 
 function deleteProject() {
   if (!editId) return;
   projects = projects.filter(x => x.id !== editId);
-  save();
-  closeModal();
-  render();
+  save(); closeModal(); render();
   showToast('Proyecto eliminado');
 }
 
@@ -901,24 +889,23 @@ function toggleSummary() {
   if (panel.classList.contains('open')) { panel.classList.remove('open'); return; }
   buildSummary();
   panel.classList.add('open');
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
 function buildSummary() {
-  const now = new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
-  const active = projects.filter(p => p.status === 'active');
-  const review = projects.filter(p => p.status === 'review');
-  const done   = projects.filter(p => p.status === 'done');
-  const blocked = projects.filter(p => p.blocker);
-  let t = `PIPELINE DE PROYECTOS — ${now}\n${'─'.repeat(50)}\n\n`;
-  t += `RESUMEN\n${projects.length} proyectos · ${active.length} activos · ${done.length} completados · ${blocked.length} requieren atención\n\n`;
+  const now = new Date().toLocaleDateString('es-MX', { day:'numeric', month:'long', year:'numeric' });
+  const active  = projects.filter(p => p.status === 'active');
+  const review  = projects.filter(p => p.status === 'review');
+  const done    = projects.filter(p => p.status === 'done');
+  const needs   = projects.filter(p => p.needs);
+  let t = `PIPELINE DE PROYECTOS — ${now}\n${'─'.repeat(52)}\n\n`;
+  t += `RESUMEN\n${projects.length} proyectos · ${active.length} activos · ${done.length} completados · ${needs.length} necesitan algo\n\n`;
   if (active.length) {
     t += `EN PROGRESO (${active.length})\n`;
     active.forEach(p => {
       t += `  • ${p.name}${p.date ? '  [' + p.date + ']' : ''}\n`;
-      t += `    Impacto: ${p.impact || '—'}\n`;
       t += `    Próximo paso: ${p.next || '—'}\n`;
-      if (p.blocker) t += `    ⚠ Bloqueador: ${p.blocker}\n`;
+      if (p.needs) t += `    Se necesita: ${p.needs}\n`;
       t += '\n';
     });
   }
@@ -930,19 +917,19 @@ function buildSummary() {
   }
   if (done.length) {
     t += `COMPLETADOS (${done.length})\n`;
-    done.forEach(p => { t += `  ✓ ${p.name} — ${p.impact || '—'}\n`; });
+    done.forEach(p => { t += `  ✓ ${p.name}\n`; });
     t += '\n';
   }
-  if (blocked.length) {
-    t += `REQUIEREN TU ATENCIÓN\n`;
-    blocked.forEach(p => { t += `  ! ${p.name}: ${p.blocker}\n`; });
+  if (needs.length) {
+    t += `REQUIEREN ATENCIÓN\n`;
+    needs.forEach(p => { t += `  ! ${p.name}: ${p.needs}\n`; });
   }
   document.getElementById('summary-text').textContent = t;
 }
 
 function copySum() {
   navigator.clipboard.writeText(document.getElementById('summary-text').textContent)
-    .then(() => showToast('Copiado al portapapeles'))
+    .then(() => showToast('Copiado al portapapeles ✓'))
     .catch(() => showToast('Selecciona el texto manualmente'));
 }
 
