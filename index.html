@@ -847,4 +847,32 @@ document.getElementById('ov').addEventListener('click',ev=>{if(ev.target===docum
 document.getElementById('ov-confirm').addEventListener('click',ev=>{if(ev.target===document.getElementById('ov-confirm'))cancelDelete()});
 
 // render() is called by onSnapshot listener
+
+// ── Expose functions to global scope (required for onclick handlers with type="module") ──
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.saveProject = saveProject;
+window.editProject = editProject;
+window.confirmDelete = confirmDelete;
+window.cancelDelete = cancelDelete;
+window.doDelete = doDelete;
+window.setView = setView;
+window.applyFilters = applyFilters;
+window.clearFilters = clearFilters;
+window.toggleSum = toggleSum;
+window.copySum = copySum;
+window.addTodo = addTodo;
+window.removeTodo = removeTodo;
+window.removeTag = removeTag;
+window.removeAssignee = removeAssignee;
+window.removeFile = removeFile;
+window.handleTagKey = handleTagKey;
+window.handleAssigneeKey = handleAssigneeKey;
+window.handleFiles = handleFiles;
+window.dov = dov;
+window.dlv = dlv;
+window.ddf = ddf;
+window.ec = ec;
+window.eH = eH;
+
 </script>
