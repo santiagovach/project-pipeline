@@ -632,30 +632,6 @@ function render(){
 }
 
 // ── Drag & Drop ──
-document.querySelectorAll('.col-body').forEach(col=>{
-  col.addEventListener('dragover',ev=>{
-    ev.preventDefault(); ev.dataTransfer.dropEffect='move';
-    col.classList.add('drag-over');
-    if(!placeholder)return;
-    const after=getDragAfter(col,ev.clientY);
-    if(!after) col.appendChild(placeholder);
-    else col.insertBefore(placeholder,after);
-  });
-  col.addEventListener('dragleave',ev=>{if(!col.contains(ev.relatedTarget))col.classList.remove('drag-over')});
-  col.addEventListener('drop',ev=>{
-    ev.preventDefault(); col.classList.remove('drag-over');
-    if(dragId===null)return;
-    const newStatus=col.dataset.col;
-    const p=projects.find(x=>x.id===dragId);
-    if(!p)return;
-    p.status=newStatus;
-    const phIdx=placeholder&&placeholder.parentNode===col?[...col.children].indexOf(placeholder):Infinity;
-    const others=projects.filter(x=>x.status===newStatus&&x.id!==dragId).sort((a,b)=>(a.order||0)-(b.order||0));
-    let o=0; others.forEach((cp,i)=>{if(i===phIdx)o++;cp.order=o++;});
-    p.order=Math.min(phIdx,others.length);
-    sv(p); showToast('Movido a '+sLabel(newStatus));
-  });
-});
 function getDragAfter(col,y){
   const els=[...col.querySelectorAll('.card:not(.drag-ghost):not(.drag-placeholder)')];
   return els.reduce((cl,ch)=>{const b=ch.getBoundingClientRect();const off=y-b.top-b.height/2;return off<0&&off>cl.offset?{offset:off,element:ch}:cl},{offset:Number.NEGATIVE_INFINITY}).element;
@@ -843,10 +819,37 @@ function copySum(){navigator.clipboard.writeText(document.getElementById('sum-te
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 
 // close modals on bg click
-document.getElementById('ov').addEventListener('click',ev=>{if(ev.target===document.getElementById('ov'))closeModal()});
-document.getElementById('ov-confirm').addEventListener('click',ev=>{if(ev.target===document.getElementById('ov-confirm'))cancelDelete()});
 
 // render() is called by onSnapshot listener
+
+// ── Setup event listeners (must be inside module to access functions) ──
+document.querySelectorAll('.col-body').forEach(col=>{
+  col.addEventListener('dragover',ev=>{
+    ev.preventDefault(); ev.dataTransfer.dropEffect='move';
+    col.classList.add('drag-over');
+    if(!placeholder)return;
+    const after=getDragAfter(col,ev.clientY);
+    if(!after) col.appendChild(placeholder);
+    else col.insertBefore(placeholder,after);
+  });
+  col.addEventListener('dragleave',ev=>{if(!col.contains(ev.relatedTarget))col.classList.remove('drag-over')});
+  col.addEventListener('drop',ev=>{
+    ev.preventDefault(); col.classList.remove('drag-over');
+    if(dragId===null)return;
+    const newStatus=col.dataset.col;
+    const p=projects.find(x=>x.id===dragId);
+    if(!p)return;
+    p.status=newStatus;
+    const phIdx=placeholder&&placeholder.parentNode===col?[...col.children].indexOf(placeholder):Infinity;
+    const others=projects.filter(x=>x.status===newStatus&&x.id!==dragId).sort((a,b)=>(a.order||0)-(b.order||0));
+    let o=0; others.forEach((cp,i)=>{if(i===phIdx)o++;cp.order=o++;});
+    p.order=Math.min(phIdx,others.length);
+    sv(p); showToast('Movido a '+sLabel(newStatus));
+  });
+});
+
+document.getElementById('ov').addEventListener('click',ev=>{if(ev.target===document.getElementById('ov'))closeModal()});
+document.getElementById('ov-confirm').addEventListener('click',ev=>{if(ev.target===document.getElementById('ov-confirm'))cancelDelete()});
 
 // ── Expose functions to global scope (required for onclick handlers with type="module") ──
 window.openModal = openModal;
