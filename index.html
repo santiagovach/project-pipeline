@@ -102,6 +102,7 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
 .ctodo-dot.checked{background:var(--pm);border-color:var(--pm)}
 .ctodo-dot.checked::after{content:'';display:block;width:4px;height:2px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(0,-0.5px)}
 .card-more{font-size:9px;color:var(--faint);margin-top:2px;font-style:italic}
+.card-id{font-size:9px;font-family:'Figtree',monospace;color:var(--faint);font-weight:500;margin-bottom:4px}
 .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:5px;padding-top:5px;border-top:1px solid var(--bdr)}
 .card-att{font-size:9px;color:var(--faint)}.card-link{font-size:9px;color:var(--pm);text-decoration:none}.card-link:hover{text-decoration:underline}
 .card.drag-ghost{opacity:.35;transform:scale(.97)}
@@ -551,6 +552,7 @@ function makeCard(p){
   d.className='card'; d.dataset.id=p.id; d.draggable=true;
   d.innerHTML =
     `<div class="card-accent ${accCls(pri)}"></div>`+
+    `<div class="card-id">#${String(p.id).padStart(3,'0')}</div>`+
     `<div class="card-top">`+
       `<div class="card-title">${p.name}</div>`+
       (pri!=='none'?`<span class="pri-badge ${priCls(pri)}">${priLabel(pri)}</span>`:'')+
@@ -713,10 +715,10 @@ function confirmDelete(){
 }
 function cancelDelete(){document.getElementById('ov-confirm').classList.remove('open');deleteId=null}
 function doDelete(){
-  projects=projects.filter(x=>x.id!==deleteId);
+  const idToDelete = deleteId;
   deleteId=null;
   document.getElementById('ov-confirm').classList.remove('open');
-  svDelete(deleteId); closeModal(); showToast('Proyecto eliminado');
+  svDelete(idToDelete); closeModal(); showToast('Proyecto eliminado');
 }
 
 // ── Tags ──
