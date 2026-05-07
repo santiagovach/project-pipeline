@@ -60,9 +60,9 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
 .filter-clear:hover{color:var(--high);background:var(--high-bg)}
 
 /* Board */
-.board-wrap{padding:1rem 1.5rem 1rem;flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
-#kanban-view{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;flex:1;min-height:0}
-.col{background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.board-wrap{padding:1rem 1.5rem 1rem;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.75rem}
+#kanban-view{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:start}
+.col{background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;max-height:calc(100vh - 220px)}
 .col-head{display:flex;align-items:center;justify-content:space-between;padding:.6rem .8rem;border-bottom:1.5px solid var(--bdr);flex-shrink:0}
 .col-name{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);display:flex;align-items:center;gap:5px}
 .col-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -821,6 +821,14 @@ function copySum(){navigator.clipboard.writeText(document.getElementById('sum-te
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 
 // close modals on bg click
+
+// Escape key closes modal
+document.addEventListener('keydown', ev => {
+  if(ev.key === 'Escape') {
+    if(document.getElementById('ov').classList.contains('open')) closeModal();
+    if(document.getElementById('ov-confirm').classList.contains('open')) cancelDelete();
+  }
+});
 
 // render() is called by onSnapshot listener
 
