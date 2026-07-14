@@ -239,7 +239,7 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
   <div class="stat"><div class="stat-val" style="color:var(--pd)" id="s-total">0</div><div class="stat-lbl">Total</div></div>
   <div class="stat"><div class="stat-val" style="color:var(--pm)" id="s-active">0</div><div class="stat-lbl">En progreso</div></div>
   <div class="stat"><div class="stat-val" style="color:#D4820A" id="s-review">0</div><div class="stat-lbl">En revisión</div></div>
-  <div class="stat"><div class="stat-val" style="color:#E67E22" id="s-blocked">0</div><div class="stat-lbl">Bloqueados</div></div>
+  <div class="stat"><div class="stat-val" style="color:#E67E22" id="s-blocked">0</div><div class="stat-lbl">Revisión final</div></div>
   <div class="stat"><div class="stat-val" style="color:#7D3C98" id="s-discarded">0</div><div class="stat-lbl">Descartados</div></div>
   <div class="stat"><div class="stat-val" style="color:var(--teal)" id="s-done">0</div><div class="stat-lbl">Completados</div></div>
   <div class="stat"><div class="stat-val" style="color:var(--high)" id="s-high">0</div><div class="stat-lbl">Alta prioridad</div></div>
@@ -257,9 +257,7 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
       <option value="backlog">Backlog</option>
       <option value="active">En progreso</option>
       <option value="review">En revisión</option>
-      <option value="blocked">Bloqueado</option>
-      <option value="done">Completado</option>
-    </select>
+      <option value="blocked">Revisión final</option>
     <select class="filter-select" id="f-pri" onchange="applyFilters()">
       <option value="">Todas las prioridades</option>
       <option value="high">Alta prioridad</option>
@@ -290,7 +288,7 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
     <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-backlog"></span>Backlog</span><span class="col-count" id="cnt-backlog">0</span></div><div class="col-body" id="col-backlog" data-col="backlog"></div></div>
     <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-active"></span>En progreso</span><span class="col-count" id="cnt-active">0</span></div><div class="col-body" id="col-active" data-col="active"></div></div>
     <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-review"></span>En revisión</span><span class="col-count" id="cnt-review">0</span></div><div class="col-body" id="col-review" data-col="review"></div></div>
-    <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-blocked"></span>Bloqueado</span><span class="col-count" id="cnt-blocked">0</span></div><div class="col-body" id="col-blocked" data-col="blocked"></div></div>
+    <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-blocked"></span>Revisión final</span><span class="col-count" id="cnt-blocked">0</span></div><div class="col-body" id="col-blocked" data-col="blocked"></div></div>
     <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-discarded"></span>Descartado</span><span class="col-count" id="cnt-discarded">0</span></div><div class="col-body" id="col-discarded" data-col="discarded"></div></div>
     <div class="col"><div class="col-head"><span class="col-name"><span class="col-dot dot-done"></span>Completado</span><span class="col-count" id="cnt-done">0</span></div><div class="col-body" id="col-done" data-col="done"></div></div>
   </div>
@@ -344,7 +342,7 @@ html,body{font-family:'Figtree',sans-serif;font-size:14px;background:var(--bg);c
         <option value="backlog">Backlog</option>
         <option value="active">En progreso</option>
         <option value="review">En revisión</option>
-        <option value="blocked">Bloqueado</option>
+        <option value="blocked">Revisión final</option>
         <option value="discarded">Descartado</option>
         <option value="done">Completado</option>
       </select>
@@ -510,7 +508,7 @@ function priLabel(v){return{high:'Alta',med:'Media',low:'Baja',none:'—'}[v]||'
 function priCls(v){return{high:'pb-high',med:'pb-med',low:'pb-low',none:''}[v]||''}
 function semCls(v){return{high:'sem-high',med:'sem-med',low:'sem-low',none:'sem-none'}[v]||'sem-none'}
 function accCls(v){return{high:'acc-high',med:'acc-med',low:'acc-low',none:'acc-none'}[v]||'acc-none'}
-function sLabel(s){return{backlog:'Backlog',active:'En progreso',review:'En revisión',blocked:'Bloqueado',discarded:'Descartado',done:'Completado'}[s]||s}
+function sLabel(s){return{backlog:'Backlog',active:'En progreso',review:'En revisión',blocked:'Revisión final',discarded:'Descartado',done:'Completado'}[s]||s}
 function fmtDate(d){if(!d)return'';try{const[y,m,day]=d.split('-');const mn=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];return`${parseInt(day)} ${mn[parseInt(m)-1]}`}catch{return d}}
 function pct(p){const t=p.todos.length;return t?Math.round(p.todos.filter(x=>x.d).length/t*100):0}
 
@@ -894,10 +892,10 @@ function buildSum(){
   const done=projects.filter(p=>p.status==='done');
   const high=projects.filter(p=>calcPriority(p)==='high'&&p.status!=='done');
   let t=`PIPELINE DE PROYECTOS — ${now}\n${'─'.repeat(54)}\n\n`;
-  t+=`RESUMEN\n${projects.length} proyectos · ${active.length} activos · ${done.length} completados · ${blocked.length} bloqueados · ${discarded.length} descartados · ${high.length} alta prioridad\n\n`;
+  t+=`RESUMEN\n${projects.length} proyectos · ${active.length} activos · ${done.length} completados · ${blocked.length} en revisión final · ${discarded.length} descartados · ${high.length} alta prioridad\n\n`;
   if(active.length){t+=`EN PROGRESO (${active.length})\n`;active.forEach(p=>{t+=`  • ${p.name}${p.date?' ['+fmtDate(p.date)+']':''} — ${priLabel(calcPriority(p))} — ${pct(p)}%\n`;p.todos.filter(td=>!td.d).forEach(td=>{t+=`      ☐ ${td.t}\n`});t+='\n'})}
   if(review.length){t+=`EN REVISIÓN (${review.length})\n`;review.forEach(p=>{t+=`  • ${p.name} — ${pct(p)}% completado\n`});t+='\n'}
-  if(blocked.length){t+=`BLOQUEADOS (${blocked.length})\n`;blocked.forEach(p=>{t+=`  ! ${p.name}${(p.assignees&&p.assignees.length)?' ['+p.assignees.join(', ')+']':''}\n`});t+='\n'}
+  if(blocked.length){t+=`REVISIÓN FINAL (${blocked.length})\n`;blocked.forEach(p=>{t+=`  ! ${p.name}${(p.assignees&&p.assignees.length)?' ['+p.assignees.join(', ')+']':''}\n`});t+='\n'}
   if(discarded.length){t+=`DESCARTADOS (${discarded.length})\n`;discarded.forEach(p=>{t+=`  ✗ ${p.name}\n`});t+='\n'}
   if(done.length){t+=`COMPLETADOS (${done.length})\n`;done.forEach(p=>{t+=`  ✓ ${p.name}\n`});t+='\n'}
   if(high.length){t+=`ALTA PRIORIDAD\n`;high.forEach(p=>{t+=`  🔴 ${p.name} [${sLabel(p.status)}]\n`})}
